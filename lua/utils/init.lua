@@ -100,9 +100,9 @@ M.update_signs = function(stats, sign_group, buf_id, sign_priority)
 
   M.foreach(stats.lines.details, function(lnum)
     local sign = 'CocCoverageUncovered';
-    if lnum.hit > 0 and stats.branches and stats.branches.converted then
+    if lnum.hit > 0 then
       -- could either be missing if no branches at current line or all branches could be taken
-      sign = (stats.branches.converted[lnum.line] == true or stats.branches.converted[lnum.line] == nil) and 'CocCoverageCovered' or 'CocCoverageMissingBranch';
+      sign = 'CocCoverageCovered';
     end
 
     vim.fn.sign_place(0, sign_group, sign, buf_id, { lnum = lnum.line, priority = sign_priority });

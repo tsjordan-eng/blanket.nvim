@@ -63,6 +63,7 @@ M.refresh = function()
 
     local buf_name = vim.api.nvim_buf_get_name(0)
     local stats = M.__cached_report:get(buf_name)
+    -- print(vim.inspect(M.__cached_report:get(buf_name)))
     if stats then
         utils.update_signs(stats,
             M.__user_config.signs.sign_group,
@@ -132,8 +133,8 @@ M.setup = function(config)
     end
 
     vim.cmd(string.format([[
-        sign define CocCoverageUncovered text=%s texthl=Error
-        sign define CocCoverageCovered text=%s texthl=Statement
+        sign define CocCoverageUncovered text=%s texthl=Statement
+        sign define CocCoverageCovered text=%s texthl=String
         sign define CocCoverageMissingBranch text=%s texthl=WarningMsg
     ]], M.__user_config.signs.uncovered, M.__user_config.signs.covered, M.__user_config.signs.incomplete_branch))
 
